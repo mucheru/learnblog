@@ -20,10 +20,19 @@
             }
             .form-control2{
                 width:800px;
-                height:600px;
+                height:700px;
                 background:#f2f2f2;
                 color:#545454;
                 margin-left:100px;
+            }
+            .form-controll{
+                width:800px;
+                height:800px;
+                background:#f2f2f2;
+                color:#545454;
+                margin-left:100px;
+
+
             }
             .model{
                 width:800px;
@@ -43,7 +52,7 @@
             }
             .form-control4{
                 width:800px;
-                height:200px;
+                height:500px;
                 background:#f2f2f2;
                 color:#545454;
                 margin-left:100px;
@@ -51,7 +60,7 @@
             }
             .form-control7{
                 width:800px;
-                height:500px;
+                height:1200px;
                 background:#f2f2f2;
                 color:#545454;
                 margin-left:100px;
@@ -66,9 +75,17 @@
 
 
             }
+            .form-control9{
+                width:800px;
+                height:1000px;
+                background:#f2f2f2;
+                color:#545454;
+                margin-left:100px;
+
+            }
             .textarea10{
                 width:800px;
-                height:300px;
+                height:600px;
                 background:#f2f2f2;
                 color:#545454;
                 margin-left:100px;
@@ -134,6 +151,25 @@
                 width: 900px;
                 margin-left:160px;
             }
+            .form-controlroute{
+                width:800px;
+                height:500px;
+                background:#f2f2f2;
+                color:#545454;
+                margin-left:100px;
+
+            }
+            input[type=text]{
+                background:#f2f2f2;
+                color:#545454;
+
+            }
+            .image{
+                width:800px;
+                margin-left:100px;
+
+
+            }
 
         </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -145,6 +181,8 @@
     <body>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
+
+
     <?php $__currentLoopData = $introduction; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $introduction): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <div class="card text-center">
     <div class="card-header">   
@@ -153,15 +191,32 @@
     </div>
     <div class="card-body">
     <?php echo e($introduction->description); ?><br>
-   <strong>Step 1:Create migration table in laravel</strong> 
+    You can install laravel using several methods.For this case we will assume you have already install <a href="https://getcomposer.org/doc/00-intro.md">composer</a> then run the following commands to install laravel<br>
+
+    <div> 
+   <button id="copy0">Copy</button>
+   <input class="form-control" id="input0" type="text" value="composer create-project laravel/laravel sharks"/>
+    </div>
+    then
+    <div>
+    <input class="form-control" id="input00" type="text" value="cd sharks"/><br>finally start the application<br>
+    <button id="copy000">Copy</button><br>
+    <input class="form-control" id="input000" type="text" value="php artisan serve"/>
+    </div>
+
+     <br>
+   <strong>Step 1:Create migration table in laravel</strong><br>
+   N/B:Ensure you have also install mysql database also configured it in in laravel at .env file ie vim sharks/.env 
+   
 
    <div> 
    <button id="copy">Copy</button>
-   <input class="form-control" id="input" type="text" value="php artisan make:migration create_sharks_table --table=sharks --create"/>
+   <input class="form-control" id="input" type="text" value="php artisan make:model Shark -m"/>
     </div>    
 
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-<strong>Step 2:open the migration file and update the content as shown</strong> 
+<strong>Step 2:open the migration file and update the up function  as shown</strong> 
+<strong>Location:</strong>database/migrations/2022_01_10_090123_create_sharks_table.php
 <div>
 <br>
 <button id="copy2">Copy</button>
@@ -169,42 +224,39 @@
 <code>
 
 <textarea class="form-control2"id="textarea">
-use IlluminateDatabaseSchemaBlueprint;
-use IlluminateDatabaseMigrationsMigration;
+&lt?php
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreatesharksTable extends Migration {
-
+class CreateSharksTable extends Migration
+{
     /**
-        * Run the migrations.
-        *
-        * @return  void
-        */
+     * Run the migrations.
+     *
+     * @return  void
+     */
     public function up()
     {
-        Schema::create('sharks', function(Blueprint $table)
-        {
-            $table->increments('id');
-
+        Schema::create('sharks', function (Blueprint $table) {
+            $table->id();
             $table->string('name', 255);
             $table->string('email', 255);
             $table->integer('shark_level');
-
             $table->timestamps();
         });
     }
 
     /**
-        * Reverse the migrations.
-        *
-        * @return  void
-        */
+     * Reverse the migrations.
+     *
+     * @return  void
+     */
     public function down()
     {
-        Schema::drop('sharks');
+        Schema::dropIfExists('sharks');
     }
-
 }
-
 </textarea >
 </code>
 <p> Now from the command line again, let’s run this migration. Make sure your database settings are good in app/config/database.php and then run:
@@ -219,7 +271,8 @@ STEP 3<br>
 </div>
 <p>Now that we have our database, let’s create a simple Eloquent model so that we can access the sharks in our database easily. You can read about Eloquent ORM and see how you can use it in your own applications.
 In the app/models folder, let’s create a shark.php model.Ensure you have started the file with the php opening tag</p>
-<p>app/models/shark.php</p>
+<p>app/Models/Shark.php</p><br>
+N/B:if the file alrady exists no need to create it.
 </div>
 <div>
 Step 4<br>
@@ -245,87 +298,94 @@ Let’s go ahead and do that. This is the easy part. From the command line in th
 </div>
 <div>
 <button id="copy4">Copy</button><br>
-<input class="form-control" id="input4" type="text" value="php artisan make:controller sharkController --r"/><br>
+<input class="form-control" id="input4" type="text" value="php artisan make:controller sharkController -r"/><br>
 This will create our resource controller with all the methods we need.Our file will look as shown below.
 </div>
 <div>
 <code>
-<textarea class="form-control2"id="textarea">
-        class sharkController extends BaseController {
+<textarea class="form-controll"id="textarea">
+&lt?php
+namespace App\Http\Controllers;
 
-        /**
-            * Display a listing of the resource.
-            *
-            * @return  Response
-            */
-        public function index()
-        {
-            //
-        }
+use Illuminate\Http\Request;
 
-        /**
-            * Show the form for creating a new resource.
-            *
-            * @return  Response
-            */
-        public function create()
-        {
-            //
-        }
+class sharkController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return  \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
 
-        /**
-            * Store a newly created resource in storage.
-            *
-            * @return  Response
-            */
-        public function store()
-        {
-            //
-        }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return  \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
-        /**
-            * Display the specified resource.
-            *
-            * @param    int  $id
-            * @return  Response
-            */
-        public function show($id)
-        {
-            //
-        }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param    \Illuminate\Http\Request  $request
+     * @return  \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
 
-        /**
-            * Show the form for editing the specified resource.
-            *
-            * @param    int  $id
-            * @return  Response
-            */
-        public function edit($id)
-        {
-            //
-        }
+    /**
+     * Display the specified resource.
+     *
+     * @param    int  $id
+     * @return  \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
 
-        /**
-            * Update the specified resource in storage.
-            *
-            * @param    int  $id
-            * @return  Response
-            */
-        public function update($id)
-        {
-            //
-        }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param    int  $id
+     * @return  \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
 
-        /**
-            * Remove the specified resource from storage.
-            *
-            * @param    int  $id
-            * @return  Response
-            */
-        public function destroy($id)
-        {
-            //
-        }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param    \Illuminate\Http\Request  $request
+     * @param    int  $id
+     * @return  \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param    int  $id
+     * @return  \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 
 </textarea>
 </code>
@@ -333,12 +393,43 @@ This will create our resource controller with all the methods we need.Our file w
 <div>
 <h2>Setting Up the Routes</h2><br>
 Now that we have generated our controller, let’s make sure our application has the routes necessary to use it. This is the other easy part (they actually might all be easy parts). In your routes.php file, add this line:
-The routes file is located in routes/web.php
+The routes file is located in routes/web.php.First ensure you have imported the sharkController ie <strong>use App\Http\Controllers\sharkController;</strong>
+
 <div>
 <button id="copy5">Copy</button><br>
 <input class="form-control" id="input5" type="text" value="Route::resource('sharks', 'sharkController');"/><br>
 This will automatically assign many actions to that resource controller. Now if you, go to your browser and view your application at example.com/sharks, it will correspond to the proper method in your sharkController.
+</div><br>
+This is how your entire routes file should look<br>
+<div>
+<code>
+<textarea class="form-controlroute"id="routes">
+&lt?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SharkController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::resource('sharks', SharkController::class);
+
+</textarea>
+
+</code>
 </div>
+
 <div>
 <h2>Step 6:Displaying the data</h2><br>
 create an index.blade.php file in the views folder ie cd resource/views/index.blade.php<br>
@@ -347,15 +438,30 @@ with the view.Therefore update the controller ie app/controllers/sharkController
 <button id="copy6">Copy</button><br>
 <code>
 <textarea class="form-control4"id="textarea6">
-public function index()
-    {
-        // get all the sharks
-        $sharks = shark::all();
+&lt?php
+namespace App\Http\Controllers;
 
-        // load the view and pass the sharks
-        return View::make('sharks.index')
-            ->with('sharks', $sharks);
+use Illuminate\Http\Request;
+use App\Models\Shark;
+
+class sharkController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return  \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+         // get all the sharks
+         $sharks = Shark::all();
+
+         // load the view and pass the sharks
+         return view('sharks.index')
+             ->with('sharks', $sharks);
     }
+
 
 
 
@@ -470,7 +576,7 @@ The View app/views/create.blade.php<br>
 <button id="copy8">Copy</button><br>
 <div>
 <code>
-<textarea class="form-control8"id="textarea9">
+<textarea class="form-control9"id="textarea9">
 <!DOCTYPE html>
 <html>
 <head>
@@ -521,14 +627,29 @@ The View app/views/create.blade.php<br>
 </html>
  </textarea>
 </code>
+<div>
+If having problem with the forms,ensure you have installed the laravel collective for Html.You can run the following command.<br>
+<input class="form-control" id="input4" type="text" value="composer require laravelcollective/html/">
+Finally you have to configure the collective in the app.config file.Add the following lines in  the app.php file.location(config/app.php).Remember there are two 
+sections  ie providers and aliases.<br>
+in the providers section add<br>
+<input class="form-control" id="input6" type="text" value="Collective\Html\HtmlServiceProvider::class,"><br>
+then on  the aliases add this three lines<br>
+<input class="form-control" id="input7" type="text" value=" 'Html' => Collective\Html\HtmlFacade::class,"><br>
+<input class="form-control" id="input8" type="text" value=" 'Form' => Collective\Html\FormFacade::class,"><br>
+<input class="form-control" id="input9" type="text" value=" 'Input' => Illuminate\Support\Facades\Request::class,"><br>
+
+
+</div>
 </div>
 <div>
 <h2>Step 9:Storing the data</h2><br>
 open the app/controllers/sharkController.php and in the store function paste the below code.
 <code>
 <textarea class="textarea10" id="textarea10">
-public function store()
+public function store(Request $request)
     {
+        //
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
@@ -536,25 +657,31 @@ public function store()
             'email'      => 'required|email',
             'shark_level' => 'required|numeric'
         );
-        $validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make($request->all(), $rules);
+        //if validator is missing you can import it on top of the page 
+        //use Illuminate\Support\Facades\Validator; 
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('sharks/create')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
+            return redirect('sharks/create')
+                ->withErrors($validator);
         } else {
             // store
             $shark = new shark;
-            $shark->name       = Input::get('name');
-            $shark->email      = Input::get('email');
-            $shark->shark_level = Input::get('shark_level');
+            $shark->name = $request->name;
+            $shark->email=$request->email;
+            $shark->shark_level = $request->shark_level;
             $shark->save();
 
             // redirect
             Session::flash('message', 'Successfully created shark!');
-            return Redirect::to('sharks');
-        }
+            return redirect('sharks');
+            //if session is missing import it at the top of  page of the class.
+            //use Illuminate\Support\Facades\Session;
+
+
+
+    }
 
 </textarea>
 </code>
@@ -580,11 +707,10 @@ app/controllers/sharkController.php<br>
         */
     public function show($id)
     {
-        // get the shark
         $shark = shark::find($id);
 
         // show the view and pass the shark to it
-        return View::make('sharks.show')
+        return view('sharks.show')
             ->with('shark', $shark);
     }
 ...
@@ -657,7 +783,7 @@ The View app/views/sharks/show.blade.php<br>
         $shark = shark::find($id);
 
         // show the edit form and pass the shark
-        return View::make('sharks.edit')
+        return view('sharks.edit')
             ->with('shark', $shark);
     }
 ...
@@ -692,7 +818,7 @@ The View app/views/sharks/edit.blade.php<br>
 <h1>Edit {{ $shark->name }}</h1>
 
 <!-- if there are creation errors, they will show here -->
-{{ HTML::ul($errors->all()) }}
+{{ Html::ul($errors->all()) }}
 
 {{ Form::model($shark, array('route' => array('sharks.update', $shark->id), 'method' => 'PUT')) }}
 
@@ -738,6 +864,7 @@ in the app/controllers/sharkController.php check for the update function and upd
         */
     public function update($id)
     {
+        //
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
@@ -745,24 +872,24 @@ in the app/controllers/sharkController.php check for the update function and upd
             'email'      => 'required|email',
             'shark_level' => 'required|numeric'
         );
-        $validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make($request->all(), $rules);
 
         // process the login
         if ($validator->fails()) {
             return Redirect::to('sharks/' . $id . '/edit')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
+                ->withErrors($validator);
+                
         } else {
             // store
             $shark = shark::find($id);
-            $shark->name       = Input::get('name');
-            $shark->email      = Input::get('email');
-            $shark->shark_level = Input::get('shark_level');
+            $shark->name=$request->name;
+            $shark->email=$request->email;
+            $shark->shark_level = $request->shark_level;
             $shark->save();
 
             // redirect
             Session::flash('message', 'Successfully updated shark!');
-            return Redirect::to('sharks');
+            return redirect('sharks');
         }
     }
 ...
@@ -830,16 +957,26 @@ Now when we click that form submit button, Laravel will use the sharks.destroy r
     {
         // delete
         $shark = shark::find($id);
-        $shark->delete();
+            $shark->delete();
 
-        // redirect
-        Session::flash('message', 'Successfully deleted the shark!');
-        return Redirect::to('sharks');
+            // redirect
+            Session::flash('message', 'Successfully deleted the shark!');
+            return redirect::to('sharks');
     }
 ...
 </textarea>
 </code>
 </div>
+<div class="image">
+<img src="<?php echo e(asset('storage/sharksindex.png')); ?>" class="img-thumbnail" alt="Responsive image"><br>
+<img src="<?php echo e(asset('storage/record.png')); ?>" class="img-thumbnail" alt="Responsive image"><br>
+</div>
+<div>
+<p>You can be able to get the source code from my github and clone it.Hope this was helpfull.</p>
+<a href="https://github.com/mucheru/shark">Github shark files </a>
+
+</div>
+
 
 </div>
 </div>
@@ -849,6 +986,12 @@ Now when we click that form submit button, Laravel will use the sharks.destroy r
 
     </body>
     <script >
+
+    function copy0(){
+            var copyText=document.querySelector("#input0");
+            copyText.select();
+            document.execCommand("copy")
+        } 
     function copy(){
         var copyText=document.querySelector("#input");
         copyText.select();
@@ -899,6 +1042,11 @@ Now when we click that form submit button, Laravel will use the sharks.destroy r
         copyText.select();
         document.execCommand("copy")
     }
+    function copy000(){
+        var copyText=document.querySelector("#input000");
+        copyText.select();
+        document.execCommand("copy")
+    }
 
 
     document.querySelector("#copy").addEventListener("click", copy);
@@ -911,13 +1059,8 @@ Now when we click that form submit button, Laravel will use the sharks.destroy r
     document.querySelector("#copy8").addEventListener("click", copy8);
     document.querySelector("#copy9").addEventListener("click", copy9);
     document.querySelector("#copy10").addEventListener("click", copy10);
-
-
-
-
-
-
-
+    document.querySelector("#copy0").addEventListener("click", copy0);
+    document.querySelector("#copy000").addEventListener("click", copy000);
 
 
   

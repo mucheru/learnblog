@@ -117,5 +117,6 @@ class Topic extends Controller
         ->get();
         return view('/laravel/crud',['introduction'=>$introduction]);
     }
+    
 }
     
