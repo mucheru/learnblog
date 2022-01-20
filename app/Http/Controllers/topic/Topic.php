@@ -113,9 +113,22 @@ class Topic extends Controller
       ->leftjoin('topicdatas','store_categories.id','=','topicdatas.category')
         ->select('store_categories.category','topicdatas.topic','topicdatas.description','topicdatas.path','topicdatas.created_at') 
         ->where('store_categories.id','=','1')
+        ->where('topicdatas.id','=','1')
         ->orderByRaw('topicdatas.created_at DESC')
         ->get();
         return view('/laravel/crud',['introduction'=>$introduction]);
+    }
+    public function laravelvuejs()
+    {
+        $introduction=DB::table('store_categories')
+      ->leftjoin('topicdatas','store_categories.id','=','topicdatas.category')
+        ->select('store_categories.category','topicdatas.topic','topicdatas.description','topicdatas.path','topicdatas.created_at') 
+        ->where('store_categories.id','=','1')
+        ->where('topicdatas.id','=','2')
+        ->orderByRaw('topicdatas.created_at DESC')
+        ->get();
+        return view('/laravel/laravelvue',['introduction'=>$introduction]);
+
     }
     
 }

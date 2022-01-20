@@ -23,7 +23,9 @@ Route::post('/postcategory',[Category::class,'storeCategory']);
 Route::get('/createtopic',[Topic::class,'index']);
 Route::post('/posttopic',[Topic::class,'create']);
 Route::get('/home',[Topic::class,'homedata']);
-Route::get('/laravelcrud',[Topic::class,'laravelcrud']); 
+Route::get('/laravelcrud',[Topic::class,'laravelcrud']);
+Route::get('/laravelvuejs',[Topic::class,'laravelvuejs']); 
+
   
 
 
