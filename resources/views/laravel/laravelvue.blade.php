@@ -11,20 +11,25 @@ laravel vue tutorial
     body {
                 font-family: 'Nunito', sans-serif;
             }
+            .content{
+                max-width: 1000px;
+                 margin: auto;
+            }
     input[type=text]{
         background:black;
         color:white;
         margin-left:100px;
+        width:900px;
     }
     .textarea1{
-        width:1200px;
+        width:900px;
         height:150px;
         background:black;
         color:white;
         margin-left:100px;
     }
     .textarea2{
-        width:1200px;
+        width:900px;
         height:750px;
         background:black;
         color:white;
@@ -32,7 +37,7 @@ laravel vue tutorial
 
     }
     .textarea3{
-        width:1200px;
+        width:900px;
         height:350px;
         background:black;
         color:white;
@@ -40,7 +45,7 @@ laravel vue tutorial
 
     }
     .textarea5{
-        width:1200px;
+        width:900px;
         height:1200px;
         background:black;
         color:white;
@@ -48,7 +53,7 @@ laravel vue tutorial
 
     }
     .textarea6{
-        width:1200px;
+        width:900px;
         height:300px;
         background:black;
         color:white;
@@ -56,7 +61,7 @@ laravel vue tutorial
 
     }
     .textarea7{
-        width:1200px;
+        width:900px;
         height:400px;
         background:black;
         color:white;
@@ -64,7 +69,7 @@ laravel vue tutorial
 
     }
     .textarea8{
-        width:1200px;
+        width:900px;
         height:350px;
         background:black;
         color:white;
@@ -72,7 +77,7 @@ laravel vue tutorial
 
     }
     .textarea9{
-        width:1200px;
+        width:900px;
         height:450px;
         background:black;
         color:white;
@@ -80,14 +85,14 @@ laravel vue tutorial
 
     }
     .textarea10{
-        width:1200px;
+        width:900px;
         height:1150px;
         background:black;
         color:white;
         margin-left:100px;
     }
     .textarea11{
-        width:1200px;
+        width:900px;
         height:900px;
         background:black;
         color:white;
@@ -95,7 +100,7 @@ laravel vue tutorial
 
     }
     .textarea12{
-        width:1200px;
+        width:900px;
         height:900px;
         background:black;
         color:white;
@@ -103,7 +108,7 @@ laravel vue tutorial
 
     }
     .textarea13{
-        width:1200px;
+        width:900px;
         height:500px;
         background:black;
         color:white;
@@ -111,18 +116,22 @@ laravel vue tutorial
 
     }
     .textarea14{
-        width:1200px;
+        width:900px;
         height:900px;
         background:black;
         color:white;
         margin-left:100px;
 
     }
+    .image{
+        width:900px;
+        margin-left:100px;
+    }
 
     </style>
 </head>
 </html>
-<body>
+<body class="content">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
 @foreach($introduction as $introduction)
@@ -133,9 +142,9 @@ laravel vue tutorial
     <div class="card-body">
     {{$introduction->description}}<br>
     @endforeach
-    </div><br>
+    </div>
     <p>
-    we will be using laravel 8.Open terminal and run the below command to install laravel.
+    we will be using laravel 8 Follow the flow of the content from top to down.Open terminal and run the below command to install laravel.
     I will assume you have already install composer in your machine.For more information about 
     <a href="https://getcomposer.org/doc/00-intro.md">composer</a> have a look at the link</p>
     <div>
@@ -545,7 +554,7 @@ Add code in resources/js/components/AllAnimal.vue file; in here we are getting a
         <h3 class="text-center">Create Product</h3>
         <div class="row">
             <div class="col-md-6">
-                <form @submit.prevent="addProduct">
+                <form @submit.prevent="addAnimal">
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" class="form-control" v-model="animal.name">
@@ -732,7 +741,48 @@ const app = new Vue({
 
 </textarea>
 </code>
-</div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+</div>
+
+<h1>Start Laravel Vue CRUD App</h1>
+<p>To start the CRUD app, you need to run the two following commands respectively in two different terminals simultaneously:</p>
+
+<div>
+    <button id="copy20">Copy</button>
+    <input class="form-control" id="input20" type="text" value="npm run watch"/>
+</div><br>
+<div>
+    <button id="copy21">Copy</button>
+    <input class="form-control" id="input21" type="text" value="php artisan serve"/>
+</div><br>
+
+<div>
+    <button id="copy22">Copy</button>
+    <input class="form-control" id="input22" type="text" value="http://127.0.0.1:8000"/>
+</div>
+<br>
+<div class="image">
+<img src="{{asset('storage/vuehomepage.png')}}" class="img-thumbnail" alt="Responsive image"><br>
+</div>
+<br>
+
+<div class="image">
+<img src="{{asset('storage/AnimalList.png')}}" class="img-thumbnail" alt="Responsive image"><br>
+</div>
+<br>
+<div class="image">
+<img src="{{asset('storage/editPagevue.png')}}" class="img-thumbnail" alt="Responsive image"><br>
+</div>
+<div>
+<h1>Summary</h1>
+<p>Ultimately this tutorial is over. I hope that you have understood how to create a laravel vue js CRUD single page application and how to consume REST API in the laravel Vue app with the help of the given above detailed steps.You 
+can find the entire source code on my git hub.<a href="https://github.com/mucheru/LaravelVue.git">
+<br>Click here is the link to github repo.</a> </p>
+</div>
+
+
+
+
+
 
 
 
@@ -846,6 +896,24 @@ const app = new Vue({
             copyText.select();
             document.execCommand("copy")
         }
+
+        function copy20(){
+            var copyText=document.querySelector("#input20");
+            copyText.select();
+            document.execCommand("copy")
+        }
+
+        function copy21(){
+            var copyText=document.querySelector("#input21");
+            copyText.select();
+            document.execCommand("copy")
+        }
+
+        function copy22(){
+            var copyText=document.querySelector("#input22");
+            copyText.select();
+            document.execCommand("copy")
+        }
         document.querySelector("#copy0").addEventListener("click", copy0);
         document.querySelector("#copy2").addEventListener("click", copy2);
         document.querySelector("#copy3").addEventListener("click", copy3);
@@ -864,24 +932,9 @@ const app = new Vue({
         document.querySelector("#copy17").addEventListener("click", copy17);
         document.querySelector("#copy18").addEventListener("click", copy18);
         document.querySelector("#copy19").addEventListener("click", copy19);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        document.querySelector("#copy20").addEventListener("click", copy20);
+        document.querySelector("#copy21").addEventListener("click", copy21);
+        document.querySelector("#copy22").addEventListener("click", copy22);
 
     </script>
 
